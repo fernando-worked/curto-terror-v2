@@ -8,7 +8,6 @@ export const Conteudo = () => {
   const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>();
 
   useEffect(() =>{
-    console.log("useEffect textoSelecionado!");
 
     if(!textoSelecionado){
       setTextoFiltrado(acervoTextos);
@@ -19,7 +18,6 @@ export const Conteudo = () => {
   },[textoSelecionado])
 
 
- 
   const handleSelect = (texto: Texto) => {
     setTextoSelecionado(texto);
   }
