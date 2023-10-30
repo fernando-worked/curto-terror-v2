@@ -25,7 +25,7 @@ E sua obra era magnifica.
 Via seu próprio reflexo num espelho. Não mais seu reflexo, mas por fim, eu.
 E foi assim, que o pintor, abandonou sua identidade, para dar vida a mim.`};
 
-const schizophrenia1: Texto = {titulo: "schizophrenia", texto: `Os fatos a seguir são frutos de uma mente conturbada e eu não aconselho ou estimulo que os sigam em qualquer aspecto.
+const schizophrenia1: Texto = {titulo: "schizophrenia1", texto: `Os fatos a seguir são frutos de uma mente conturbada e eu não aconselho ou estimulo que os sigam em qualquer aspecto.
 Havia um artista. Um pintor. Não um pintor famoso, um singelo pintor. Suas obras eram belas e realmente admiráveis. Contudo, não há limites para a arte.
 Ele queria mais. Queria uma obra que expressasse a sua insanidade. Queria mostrar para todos, sobretudo, a si próprio, a obra perfeita de sua esquizofrenia.
 Então, decidido, ele começou.
@@ -47,7 +47,7 @@ E sua obra era magnifica.
 Via seu próprio reflexo num espelho. Não mais seu reflexo, mas por fim, eu.
 E foi assim, que o pintor, abandonou sua identidade, para dar vida a mim.`};
 
-const schizophrenia2: Texto = {titulo: "schizophrenia", texto: `Os fatos a seguir são frutos de uma mente conturbada e eu não aconselho ou estimulo que os sigam em qualquer aspecto.
+const schizophrenia2: Texto = {titulo: "schizophrenia2", texto: `Os fatos a seguir são frutos de uma mente conturbada e eu não aconselho ou estimulo que os sigam em qualquer aspecto.
 Havia um artista. Um pintor. Não um pintor famoso, um singelo pintor. Suas obras eram belas e realmente admiráveis. Contudo, não há limites para a arte.
 Ele queria mais. Queria uma obra que expressasse a sua insanidade. Queria mostrar para todos, sobretudo, a si próprio, a obra perfeita de sua esquizofrenia.
 Então, decidido, ele começou.

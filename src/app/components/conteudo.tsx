@@ -4,46 +4,32 @@ import React, { useEffect, useState } from 'react';
 import { Texto, acervoTextos } from './textos';
 
 export const Conteudo = () => {
-  console.log("renderizou!");
-  const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>(null);
+  const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>();
   const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>();
 
-  const handleSelect = (selecionado: Texto) => {
-    setTextoSelecionado(selecionado);
-    setTextoFiltrado(acervoTextos.filter(texto => texto.titulo === selecionado.titulo));
-    console.log("chamou!");
-  };
+  useEffect(() =>{
+    console.log("useEffect textoSelecionado!");
 
-  useEffect(() => {
-    setTextoFiltrado(acervoTextos);
-    console.log("useEffect []");
-  },[])
+    if(!textoSelecionado){
+      setTextoFiltrado(acervoTextos);
+    }else{
+      setTextoFiltrado(acervoTextos.filter(textoSelecionado => textoSelecionado.titulo === "schizophrenia"))
+    }
 
-
+  },[textoSelecionado])
 
 
-  if(textoFiltrado)
-  if(textoFiltrado.length > 1){
-    return (
-      <div>
-        {textoFiltrado.map((texto, index) => (
-          <div
-            onClick={() => {
-              handleSelect(texto);
-            }}
-            className='titulo-texto'
-            key={index}
-          >
-            <h2>{texto.titulo}</h2>
-          </div>
-        ))}
-      </div>
-    );
-  }else{
-    return (
-      <div>{textoSelecionado?.texto}</div>
-    )
+ 
+  const handleSelect = (texto: Texto) => {
+    setTextoSelecionado(texto);
   }
 
+  return (
+    textoFiltrado?.map(texto => {
+      return <div onClick={() => {
+        handleSelect(texto)
+      }} className='titulo-tile' key={texto.titulo}>{texto.titulo}</div>
+    })
+  )
   
 };
