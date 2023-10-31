@@ -46,16 +46,25 @@ export const Conteudo = () => {
 
   const handleSelect = (texto: Texto) => {
     setTextoSelecionado(texto);
-    setButtonProps(prevState => ({...prevState, inicio: {texto: "Início", disabled: false}}));
+
+    const indice = acervoTextos.findIndex(item => item.titulo === texto.titulo);
+    const textoAnterior = "";
+    const textoProximo = "";
+
+    const anterior: TButtonProps = indice == 0 ? {texto: " - ", disabled: true} : {texto: "Anterior", disabled: false}; 
+    const inicio: TButtonProps = {texto: "Início", disabled: false};
+    const proximo: TButtonProps = indice+1 == acervoTextos.length ? {texto: " - ", disabled: true} : {texto: "Próximo", disabled: false};
+
+    setButtonProps(prevState => ({...prevState, anterior, inicio, proximo}));
   }
 
   if(textoSelecionado){
     return (
       <div>
         <div className='input-holder'>
-          <button className='btn'>{buttonProps.anterior.texto}</button>
-          <button onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
-          <button className='btn'>{buttonProps.proximo.texto}</button>
+          <button disabled={buttonProps.anterior.disabled} className='btn'>{buttonProps.anterior.texto}</button>
+          <button disabled={buttonProps.inicio.disabled} onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
+          <button disabled={buttonProps.proximo.disabled} className='btn'>{buttonProps.proximo.texto}</button>
         </div>
         <div className='texto'>
           {textoSelecionado.texto.split('\n').map((linha, index) => (

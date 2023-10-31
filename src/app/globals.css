@@ -47,13 +47,14 @@
   margin: 5px 5px;
   padding: 5px 5px;
   width: 150px;
+  height: 30px;
   border-radius: 20px;
   color: azure;
   background-color: #0b2e59;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn:hover {
+.btn:not(:disabled):hover {
   background-color: #164f7c;
   color: white;
 }
