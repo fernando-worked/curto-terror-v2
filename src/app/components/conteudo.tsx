@@ -22,6 +22,19 @@ export const Conteudo = () => {
   const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>();
   const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>();
 
+  type TButtonProps = {
+    texto: string,
+    disabled: boolean,
+  }
+
+  type ButtonControler = {
+    anterior: TButtonProps,
+    inicio: TButtonProps,
+    proximo: TButtonProps,
+  }
+
+  const [buttonProps, setButtonProps] = useState<ButtonControler>({anterior: {texto: "Anterior", disabled: false}, inicio: {texto: "Início", disabled: false}, proximo: {texto: "Próximo", disabled: false}});
+
   useEffect(() =>{
 
     if(!textoSelecionado){
@@ -33,15 +46,16 @@ export const Conteudo = () => {
 
   const handleSelect = (texto: Texto) => {
     setTextoSelecionado(texto);
+    setButtonProps(prevState => ({...prevState, inicio: {texto: "Início", disabled: false}}));
   }
 
   if(textoSelecionado){
     return (
       <div>
         <div className='input-holder'>
-          <button className='btn'>Anterior</button>
-          <button onClick={handleInicio} className='btn'>Início</button>
-          <button className='btn'>Próximo</button>
+          <button className='btn'>{buttonProps.anterior.texto}</button>
+          <button onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
+          <button className='btn'>{buttonProps.proximo.texto}</button>
         </div>
         <div className='texto'>
           {textoSelecionado.texto.split('\n').map((linha, index) => (
