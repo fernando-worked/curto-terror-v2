@@ -7,10 +7,10 @@ export const Conteudo = () => {
 
   const handleInicio = () => {
     setTextoSelecionado(null);
+    setTextoFiltrado(acervoTextos);
   }
 
   const handleSearch = (e: any) => {
-    console.log(e.target.value);
     if(e){
       setTextoFiltrado(acervoTextos.filter(texto => texto.titulo.startsWith(e.target.value)));
     }else{
@@ -19,8 +19,19 @@ export const Conteudo = () => {
     
   }
 
+  const handleAnterior = () => {
+    const indiceAtual = acervoTextos.findIndex(texto => texto.titulo === textoSelecionado?.titulo);
+    setTextoSelecionado(acervoTextos[indiceAtual-1]);
+
+  }
+
+  const handleProximo = () => {
+    const indiceAtual = acervoTextos.findIndex(texto => texto.titulo === textoSelecionado?.titulo);
+    setTextoSelecionado(acervoTextos[indiceAtual+1]);
+  }
+
   const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>();
-  const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>();
+  const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>(acervoTextos);
 
   type TButtonProps = {
     texto: string,
@@ -37,9 +48,27 @@ export const Conteudo = () => {
 
   useEffect(() =>{
 
-    if(!textoSelecionado){
-      setTextoFiltrado(acervoTextos);
+    let indice = 0;
+    let textoAnterior = "";
+    let textoProximo = "";
+
+    if(textoSelecionado){
+      indice = acervoTextos.findIndex(item => item.titulo === textoSelecionado.titulo);
     }
+
+    if(indice < acervoTextos.length-1)
+    textoProximo = acervoTextos[indice+1].titulo;
+
+    if(indice > 0)
+    textoAnterior = acervoTextos[indice-1].titulo;
+  
+  
+    const anterior: TButtonProps = indice == 0 ? {texto: " - ", disabled: true} : {texto: textoAnterior, disabled: false}; 
+    const inicio: TButtonProps = {texto: "Início", disabled: false};
+    const proximo: TButtonProps = indice+1 == acervoTextos.length ? {texto: " - ", disabled: true} : {texto: textoProximo, disabled: false};
+
+    setButtonProps(prevState => ({...prevState, anterior, inicio, proximo}));
+
 
   },[textoSelecionado])
 
@@ -47,24 +76,15 @@ export const Conteudo = () => {
   const handleSelect = (texto: Texto) => {
     setTextoSelecionado(texto);
 
-    const indice = acervoTextos.findIndex(item => item.titulo === texto.titulo);
-    const textoAnterior = "";
-    const textoProximo = "";
-
-    const anterior: TButtonProps = indice == 0 ? {texto: " - ", disabled: true} : {texto: "Anterior", disabled: false}; 
-    const inicio: TButtonProps = {texto: "Início", disabled: false};
-    const proximo: TButtonProps = indice+1 == acervoTextos.length ? {texto: " - ", disabled: true} : {texto: "Próximo", disabled: false};
-
-    setButtonProps(prevState => ({...prevState, anterior, inicio, proximo}));
   }
 
   if(textoSelecionado){
     return (
       <div>
         <div className='input-holder'>
-          <button disabled={buttonProps.anterior.disabled} className='btn'>{buttonProps.anterior.texto}</button>
+          <button disabled={buttonProps.anterior.disabled} onClick={handleAnterior} className='btn'>{buttonProps.anterior.texto}</button>
           <button disabled={buttonProps.inicio.disabled} onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
-          <button disabled={buttonProps.proximo.disabled} className='btn'>{buttonProps.proximo.texto}</button>
+          <button disabled={buttonProps.proximo.disabled} onClick={handleProximo} className='btn'>{buttonProps.proximo.texto}</button>
         </div>
         <div className='texto'>
           {textoSelecionado.texto.split('\n').map((linha, index) => (
