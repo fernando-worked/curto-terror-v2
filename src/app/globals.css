@@ -1,5 +1,5 @@
 html{
-  font-size: 62,5%;
+  font-size: calc(2 * 62.5%);
 }
 
 * {
@@ -17,11 +17,13 @@ html{
   display: flex;
   justify-content: center;
   align-items: center;
+  --position: fixed;
 }
 
 .titulo{
-  font-size: 6rem;
+  font-size: 5rem
 }
+
 
 .conteudo{
   height: 85vh;
@@ -35,6 +37,8 @@ html{
   align-content: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  
 }
 
 .input-holder{
@@ -50,11 +54,13 @@ html{
   margin: 5px 5px;
   padding: 5px 5px;
   width: 150px;
+  min-width: 20px;
   height: 30px;
   border-radius: 20px;
   color: azure;
   background-color: #0b2e59;
   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
 .btn:not(:disabled):hover {
@@ -62,13 +68,46 @@ html{
   color: white;
 }
 
+.btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 .search{
   border: 2px solid #164f7c;
   border-radius: 20px;
   padding: 5px;
   width: 33%;
+  min-width: 300px;
 }
 
 .texto{
   margin: 0px 10px;
 }
+
+@media only screen and (max-width: 920px) {
+  .titulo{
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .titulo{
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .titulo{
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .titulo{
+    font-size: 1.5rem;
+  }
+}
+
+
+
