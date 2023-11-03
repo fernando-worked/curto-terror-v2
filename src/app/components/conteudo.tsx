@@ -86,10 +86,12 @@ export const Conteudo = () => {
           <button disabled={buttonProps.inicio.disabled} onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
           <button disabled={buttonProps.proximo.disabled} onClick={handleProximo} className='btn'>{buttonProps.proximo.texto}</button>
         </div>
-        <div className='texto'>
-          {textoSelecionado.texto.split('\n').map((linha, index) => (
-            <p key={index}>{linha}</p>
-           ))}
+        <div className='content-holder'>
+          <div className='texto'>
+            {textoSelecionado.texto.split('\n').map((linha, index) => (
+              <p key={index}>{linha}</p>
+            ))}
+          </div>
         </div>
         
       </div>)
@@ -99,12 +101,15 @@ export const Conteudo = () => {
         <div className='input-holder'>
           <input onChange={handleSearch} placeholder='Digite para buscar' className='search' type='text'></input>
         </div>
-          {textoFiltrado?.map(texto => {
-          return <div onClick={() => {
-            handleSelect(texto)
-          }} className='titulo-tile' key={texto.titulo}>{texto.titulo}</div>
-        })}
+          <div className='content-holder'>
+            {textoFiltrado?.map(texto => {
+            return <div onClick={() => {
+              handleSelect(texto)
+            }} className='titulo-tile' key={texto.titulo}>{texto.titulo}</div>
+          })}
+        </div>
       </div>
+      
       
     )
   }
