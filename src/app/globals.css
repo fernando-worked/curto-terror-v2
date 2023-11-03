@@ -33,6 +33,12 @@ html{
   scrollbar-color: transparent transparent;
 }
 
+.footer{
+  position: fixed;
+  bottom: 0;
+  display: none;
+}
+
 .titulo-tile{
   background-color: bisque;
   margin: 5px 3px;
@@ -79,6 +85,7 @@ html{
 }
 
 .search{
+  margin: 5px;
   border: 2px solid #164f7c;
   border-radius: 20px;
   padding: 5px;
@@ -88,7 +95,10 @@ html{
 
 .texto{
   margin: 0px 10px;
+  margin-bottom: 3vh;
+  height: 30px;
 }
+
 
 @media only screen and (max-width: 920px) {
   .titulo{
@@ -106,11 +116,19 @@ html{
   .titulo{
     font-size: 2rem;
   }
+
+  .btn{
+    font-size: 0.8rem;
+  }
 }
 
 @media only screen and (max-width: 380px) {
   .titulo{
     font-size: 1.5rem;
+  }
+
+  .btn{
+    font-size: 0.6rem;
   }
 }
 

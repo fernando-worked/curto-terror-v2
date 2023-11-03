@@ -10,6 +10,7 @@ export default function Home() {
       <section className='conteudo'>
         <Conteudo/>
       </section>
+      <footer className="footer">By fernando.worked@gmail.com</footer>
     </div>
     
     </>
