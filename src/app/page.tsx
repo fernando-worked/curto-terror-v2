@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { Conteudo } from "./components/conteudo";
 import { Texto, acervoTextos } from "./components/textos";
 
 export default function Home() {
   const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>();
   const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>(acervoTextos);
+  const [tituloPagina, setTituloPagina] = useState<String | undefined>("Camadas do Medo");
 
   const handleInicio = () => {
     setTextoSelecionado(null);
@@ -67,7 +67,9 @@ export default function Home() {
     const inicio: TButtonProps = {texto: "Início", disabled: false};
     const proximo: TButtonProps = indice+1 == acervoTextos.length ? {texto: " - ", disabled: true} : {texto: textoProximo, disabled: false};
 
-    setButtonProps(prevState => ({...prevState, anterior, inicio, proximo}));
+    setButtonProps({anterior, inicio, proximo});
+
+    setTituloPagina(textoSelecionado ? textoSelecionado.titulo : "Camadas do Medo");
 
 
   },[textoSelecionado])
@@ -77,19 +79,48 @@ export default function Home() {
     setTextoSelecionado(texto);
 
   }
+  
 
   return (
     <>
-    <div className='site'>
-      <header className='header'>
-        <h1 className='titulo'>Camadas do Medo</h1>
-      </header>
-      <section className='conteudo'>
-        <Conteudo/>
-      </section>
-      <footer className="footer">By fernando.worked@gmail.com</footer>
-    </div>
-    
+      <div className='site'>
+        <header className='header'>
+          <h1 className='titulo'>{tituloPagina}</h1>
+        </header>
+        <section className='conteudo'>
+          {textoSelecionado ? (
+            <div>
+              <div className='input-holder'>
+                <button disabled={buttonProps.anterior.disabled} onClick={handleAnterior} className='btn'>{buttonProps.anterior.texto}</button>
+                <button disabled={buttonProps.inicio.disabled} onClick={handleInicio} className='btn'>{buttonProps.inicio.texto}</button>
+                <button disabled={buttonProps.proximo.disabled} onClick={handleProximo} className='btn'>{buttonProps.proximo.texto}</button>
+              </div>
+              <div className='content-holder'>
+                <div className='texto'>
+                  {textoSelecionado.texto.split('\n').map((linha, index) => (
+                    <p key={index}>{linha}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className='input-holder'>
+                <input onChange={handleSearch} placeholder='Digite para buscar' className='search' type='text'></input>
+              </div>
+              <div className='content-holder'>
+                {textoFiltrado?.map(texto => {
+                  return <div onClick={() => {
+                    handleSelect(texto)
+                  }} className='titulo-tile' key={texto.titulo}>{texto.titulo}</div>
+                })}
+              </div>
+            </div>
+          )}
+        </section>
+        <footer className="footer">By fernando.worked@gmail.com</footer>
+      </div>
     </>
-  )
+  );
+  
 }
