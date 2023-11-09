@@ -1,5 +1,6 @@
 :root{
-  --primary-color: 
+  --primary-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(113,1,190,1) 0%, rgba(68,111,120,1) 95%);
+
 }
 
 html{
@@ -17,13 +18,14 @@ html{
 .header{
   width: 100%;
   height: 15vh;
-  background-color: #562155;
+  background: var(--primary-color);
   color: #a9c2c9;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
+  letter-spacing: 10px;
 }
 
 .titulo{
@@ -46,7 +48,7 @@ html{
 }
 
 .titulo-tile{
-  background-color: #562155;
+  background: var(--primary-color);
   color: azure;
   margin: 5px 3px;
   height: 4rem;
@@ -56,6 +58,7 @@ html{
   align-items: center;
   cursor: pointer;
   border-radius: 10px;
+  letter-spacing: 3px;
   
 }
 
@@ -65,7 +68,7 @@ html{
   align-content: center;
   width: 100%;
   height: 50px;
-  background-color: #562155;
+  background: var(--primary-color);
   position: fixed;
   top: 15vh;
 }
@@ -89,7 +92,7 @@ html{
   height: 30px;
   border-radius: 20px;
   color: azure;
-  background-color: #562155;
+  background: var(--primary-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
   border: 2px solid #8e8ca3;
@@ -111,6 +114,7 @@ html{
   margin: 0px 10px;
   margin-bottom: 3vh;
   height: 30px;
+  line-height: 50px;
 }
 
 

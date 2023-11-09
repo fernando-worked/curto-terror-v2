@@ -1,12 +1,16 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Texto, acervoTextos } from "./components/textos";
 
 export default function Home() {
+  
+
   const [textoSelecionado, setTextoSelecionado] = useState<Texto | null>();
   const [textoFiltrado, setTextoFiltrado] = useState<Texto[] | null>(acervoTextos);
   const [tituloPagina, setTituloPagina] = useState<String | undefined>("Camadas do Medo");
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleInicio = () => {
     setTextoSelecionado(null);
@@ -51,7 +55,7 @@ export default function Home() {
     let indice = 0;
     let textoAnterior = "";
     let textoProximo = "";
-
+    
     if(textoSelecionado){
       indice = acervoTextos.findIndex(item => item.titulo === textoSelecionado.titulo);
     }
@@ -71,6 +75,10 @@ export default function Home() {
 
     setTituloPagina(textoSelecionado ? textoSelecionado.titulo : "Camadas do Medo");
 
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+
 
   },[textoSelecionado])
 
@@ -87,7 +95,7 @@ export default function Home() {
         <header className='header'>
           <h1 className='titulo'>{tituloPagina}</h1>
         </header>
-        <section className='conteudo'>
+        <section className='conteudo' ref={scrollContainerRef}>
           {textoSelecionado ? (
             <div>
               <div className='input-holder'>
