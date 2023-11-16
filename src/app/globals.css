@@ -59,7 +59,12 @@ html{
   cursor: pointer;
   border-radius: 10px;
   letter-spacing: 3px;
-  
+  transition: background-color 0.3s, border-color 0.3s; /* Adiciona um efeito de transição suave */
+}
+
+.titulo-tile:hover {
+  background: var(--hover-color); /* Altera a cor de fundo ao passar o mouse */
+  border: #164f7c 1px solid;
 }
 
 .input-holder{
@@ -92,7 +97,7 @@ html{
   height: 30px;
   border-radius: 20px;
   color: azure;
-  background: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0); /* Cor transparente (preto com 0 de opacidade) */
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
   border: 2px solid #8e8ca3;
@@ -117,6 +122,10 @@ html{
   line-height: 50px;
 }
 
+
+.texto-nao-encontrado{
+  margin-left: 10px;
+}
 
 
 @media only screen and (max-width: 920px) {
