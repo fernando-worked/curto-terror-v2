@@ -100,7 +100,7 @@ html{
   height: 30px;
   border-radius: 20px;
   color: azure;
-  background-color: rgba(0, 0, 0, 0); /* Cor transparente (preto com 0 de opacidade) */
+  background-color: rgba(0, 0, 0, 0); /* Cor transparente (preto com 0 de opadcidade) */
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
   border: 2px solid #8e8ca3;
