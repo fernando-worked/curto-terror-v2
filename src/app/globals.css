@@ -65,7 +65,7 @@ html{
 }
 
 .titulo-tile:hover {
-  background: var(--hover-color); /* Altera a cor de fundo ao passar o mouse */
+  background: #8e8ca3; /* Altera a cor de fundo ao passar o mouse */
   border: #164f7c 1px solid;
   letter-spacing: 5px;
 }
@@ -107,7 +107,7 @@ html{
 }
 
 .btn:not(:disabled):hover {
-  background-color: #164f7c;
+  background-color: #8e8ca3;
   color: white;
 }
 
